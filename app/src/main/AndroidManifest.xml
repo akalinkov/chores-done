@@ -9,13 +9,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SelectUserActivity">
+        <activity android:name=".activities.SelectUserActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.NewUserActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.SelectUserActivity" />
+        </activity>
+        <activity
+            android:name=".activities.TasksActivity"
+            android:label="@string/title_activity_daily_chores" />
+        <activity android:name=".activities.NewTaskActivity"></activity>
     </application>
 
 </manifest>

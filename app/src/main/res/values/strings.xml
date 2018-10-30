@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Chores Done</string>
+    <string name="title_activity_daily_chores">Daily Chores</string>
+    <string name="title_rewards">Rewards</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="label_no_tasks">Add you first task</string>
+    <string name="screen_title_daily_chores">Daily Chores</string>
+    <string name="hint_kids_name">Kid\'s name</string>
+    <string name="hint_kids_age">Kid\'s age (optional)</string>
+    <string name="hint_task_name">Task name</string>
+    <string name="hint_task_value">Value</string>
+    <string name="hint_due_date">Due date (optional)</string>
+    <string name="btn_create">Create</string>
+    <string name="hint_task_description">Description (optional)</string>
+    <string name="menu_item_delete">Delete</string>
 </resources>
