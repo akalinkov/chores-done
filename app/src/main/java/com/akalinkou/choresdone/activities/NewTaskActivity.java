@@ -11,6 +11,7 @@ import android.widget.EditText;
 import com.akalinkou.choresdone.R;
 import com.akalinkou.choresdone.db.viewmodels.TaskViewModel;
 import com.akalinkou.choresdone.models.Task;
+import com.akalinkou.choresdone.models.User;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,22 +27,46 @@ public class NewTaskActivity extends AppCompatActivity {
     @BindView(R.id.edt_task_value)
     EditText taskValue;
 
-    @BindView(R.id.edt_task_due_date)
-    EditText taskDueDate;
-
     private TaskViewModel taskViewModel;
+
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_task);
 
+        if (savedInstanceState == null) {
+            parseIntentExtras();
+        } else {
+            restoreInstanceState(savedInstanceState);
+        }
+
         ButterKnife.bind(this);
         taskViewModel = ViewModelProviders.of(this).get(TaskViewModel.class);
     }
 
-    public static void start(Context context) {
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putParcelable(TasksActivity.USER_EXTRA_KEY, user);
+        super.onSaveInstanceState(outState);
+    }
+
+    private void parseIntentExtras() {
+        Bundle extras = getIntent().getExtras();
+        if (extras == null) {
+            return;
+        }
+        user = extras.getParcelable(TasksActivity.USER_EXTRA_KEY);
+    }
+
+    private void restoreInstanceState(Bundle inState) {
+        user = inState.getParcelable(TasksActivity.USER_EXTRA_KEY);
+    }
+
+    public static void start(Context context, User user) {
         Intent newTaskActivity = new Intent(context, NewTaskActivity.class);
+        newTaskActivity.putExtra(TasksActivity.USER_EXTRA_KEY, user);
         context.startActivity(newTaskActivity);
     }
 
@@ -52,10 +77,8 @@ public class NewTaskActivity extends AppCompatActivity {
         String valueString = taskValue.getText().toString();
         int value = (valueString.isEmpty()) ? 0 : Integer.parseInt(valueString);
         Log.d(TAG, "onAddTaskBtnClicked: taskValue=" + value);
-        String dueDate = taskDueDate.getText().toString();
-        Log.d(TAG, "onAddTaskBtnClicked: taskDueDate=" + dueDate);
-        Task task = new Task(name, value, dueDate, false);
+        Task task = new Task(name, value, user.getId(), false);
         taskViewModel.addTask(task);
-        TasksActivity.start(this);
+        TasksActivity.start(this, user);
     }
 }

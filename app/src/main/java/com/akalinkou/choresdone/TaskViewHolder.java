@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.ContextMenu;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -63,7 +64,6 @@ implements View.OnCreateContextMenuListener, PopupMenu.OnMenuItemClickListener {
         PopupMenu popup = new PopupMenu(v.getContext(), v);
         popup.getMenuInflater().inflate(R.menu.task_menu, popup.getMenu());
         popup.setOnMenuItemClickListener(this);
-        popup
         popup.show();
     }
 

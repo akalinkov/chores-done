@@ -20,9 +20,6 @@ public class NewUserActivity extends AppCompatActivity {
     @BindView(R.id.edt_user_name)
     EditText userName;
 
-    @BindView(R.id.edt_user_age)
-    EditText userAge;
-
     private UserViewModel userViewModel;
 
     @Override
@@ -43,14 +40,8 @@ public class NewUserActivity extends AppCompatActivity {
     @OnClick(R.id.btn_add_user)
     public void onAddUserBtnClicked() {
         String name = userName.getText().toString();
-        String ageString = userAge.getText().toString();
         String path = "";
-        User user;
-        if (ageString.isEmpty()) {
-            user = new User(name, path);
-        } else {
-            user = new User(name, Integer.parseInt(ageString), path);
-        }
+        User user = new User(name, 0, path);
         userViewModel.addUser(user);
         SelectUserActivity.start(this);
     }

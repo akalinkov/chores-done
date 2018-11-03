@@ -16,14 +16,11 @@ public interface TaskDao {
     @Insert
     void addTask(Task task);
 
-    @Query("SELECT * FROM tasks ORDER BY title ASC")
-    LiveData<List<Task>> getAllTasks();
+    @Query("SELECT * FROM tasks WHERE user_id = :id ORDER BY title ASC")
+    LiveData<List<Task>> getTasks(int id);
 
     @Query("UPDATE tasks SET status = :status WHERE id = :id")
     void updateTaskStatus(int id, boolean status);
-
-    @Query("SELECT * FROM tasks where id = :id")
-    Task getTaskById(int id);
 
     @Delete
     void deleteTask(Task task);

@@ -49,7 +49,7 @@ public class SelectUserActivity extends AppCompatActivity {
         usersListView.setAdapter(userButtonAdapter);
 
         userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
-        userViewModel.getUsers().observe(this, new Observer<List<User>>() {
+        userViewModel.getAllUsers().observe(this, new Observer<List<User>>() {
             @Override
             public void onChanged(@Nullable final List<User> users) {
                 userButtonAdapter.setUsers(users);

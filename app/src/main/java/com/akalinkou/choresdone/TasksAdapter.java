@@ -62,12 +62,14 @@ public class TasksAdapter extends RecyclerView.Adapter<TaskViewHolder>
     @Override
     public void onTaskClick(int position) {
         Log.d(TAG, "onTaskClick: task #" + position);
-        actionListener.toggleTaskStatus(tasks.get(position).getId(), tasks.get(position).isComplete());
+        actionListener
+                .toggleTaskStatus(tasks.get(position).getId(),
+                        tasks.get(position).isComplete(),
+                        tasks.get(position).getValue());
     }
 
     public interface TaskActionListener {
-        void toggleTaskStatus(int taskId, boolean currentCompletionStatus);
-
+        void toggleTaskStatus(int taskId, boolean currentCompletionStatus, int value);
         void deleteTask(Task task);
     }
 }

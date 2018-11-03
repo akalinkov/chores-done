@@ -22,34 +22,13 @@ public class TaskViewModel extends AndroidViewModel {
         taskRepo = new TaskRepository(application);
     }
 
-
-    public LiveData<List<Task>> getAllTasks() {
-        return taskRepo.getAllTasks();
+    public LiveData<List<Task>> getTasks(int userId) {
+        return taskRepo.getTasks(userId);
     }
 
     public void addTask(@NonNull Task task) {
         Log.d(TAG, "addTask: " + task.getTitle());
         taskRepo.addTask(task);
-    }
-
-
-    public Task get(int position) {
-        Log.d(TAG, "get: a task object at position #" + position);
-        return taskRepo
-                .getAllTasks()
-                .getValue()
-                .get(position);
-    }
-
-    public int size() {
-        Log.d(TAG, "size: get tasks size");
-        if (taskRepo.getAllTasks() == null) {
-            return 0;
-        }
-        if (taskRepo.getAllTasks().getValue() == null) {
-            return 0;
-        }
-        return taskRepo.getAllTasks().getValue().size();
     }
 
     public void toggleTaskStatus(int id, boolean currentStatus) {

@@ -67,10 +67,10 @@ implements UserViewHolder.ProfileClickListener {
     @Override
     public void onProfileClick(int position) {
         Log.d(TAG, "onProfileClick: clicked profile #" + position);
-        if (buttons.get(position).isDefualtButton()) {
+        if (buttons.get(position).isDefaultButton()) {
             NewUserActivity.startIntent(context);
         } else {
-            TasksActivity.start(context);
+            TasksActivity.start(context, userAtPosition(position));
         }
     }
 
@@ -78,5 +78,9 @@ implements UserViewHolder.ProfileClickListener {
         Log.d(TAG, "setUsers: set list of users for UserButtonAdapter");
         buttons = wrapUsersIntoButtons(users);
         notifyDataSetChanged();
+    }
+
+    private User userAtPosition(int position) {
+        return buttons.get(position).getUser();
     }
 }

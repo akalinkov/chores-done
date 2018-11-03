@@ -23,7 +23,11 @@ public class UserButton {
         return user.getName();
     }
 
-    public boolean isDefualtButton(){
+    public boolean isDefaultButton(){
         return user == null;
+    }
+
+    public User getUser() {
+        return user;
     }
 }

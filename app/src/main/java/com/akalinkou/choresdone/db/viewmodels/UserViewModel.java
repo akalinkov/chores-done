@@ -14,19 +14,24 @@ public class UserViewModel extends AndroidViewModel {
 
     private UserRepository userRepository;
 
-    private LiveData<List<User>> users;
-
     public UserViewModel(@NonNull Application application) {
         super(application);
         userRepository = new UserRepository(application);
-        users = userRepository.getUsers();
     }
 
-    public LiveData<List<User>> getUsers() {
-        return users;
+    public LiveData<List<User>> getAllUsers() {
+        return userRepository.getUsers();
     }
 
     public void addUser(@NonNull User user) {
         userRepository.addUser(user);
+    }
+
+    public LiveData<User> getUser(int userId) {
+        return userRepository.getUser(userId);
+    }
+
+    public void updateBalance(User user) {
+        userRepository.updateUser(user);
     }
 }

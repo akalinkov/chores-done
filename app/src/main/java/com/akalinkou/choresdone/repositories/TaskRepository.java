@@ -13,14 +13,16 @@ import java.util.List;
 public class TaskRepository {
     private TaskDao taskDao;
     private LiveData<List<Task>> tasks;
+    private int userId;
 
     public TaskRepository(Application application) {
         taskDao = AppDatabase.getDatabase(application).taskDao();
     }
 
-    public LiveData<List<Task>> getAllTasks() {
-        if (tasks == null) {
-            tasks = taskDao.getAllTasks();
+    public LiveData<List<Task>> getTasks(int userId) {
+        if (tasks == null || this.userId != userId) {
+            this.userId = userId;
+            tasks = taskDao.getTasks(userId);
         }
         return tasks;
     }

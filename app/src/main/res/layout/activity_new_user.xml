@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Create account"
+            android:text="@string/btn_create"
             android:textSize="28sp" />
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -39,16 +39,6 @@
             android:inputType="textPersonName"
             android:hint="@string/hint_kids_name"
             android:imeOptions="actionNext"/>
-
-        <EditText
-            android:id="@+id/edt_user_age"
-            android:layout_width="@dimen/edit_field_width"
-            android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:imeOptions="actionDone"
-            android:hint="@string/hint_kids_age"/>
-
-
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btn_add_user"

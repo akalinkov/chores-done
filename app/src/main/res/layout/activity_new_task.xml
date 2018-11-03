@@ -38,20 +38,10 @@
             android:layout_width="@dimen/edit_field_width"
             android:layout_height="wrap_content"
             android:hint="@string/hint_task_value"
-            android:imeOptions="actionNext"
+            android:imeOptions="actionDone"
             android:inputType="number"
             android:drawablePadding="16dp"
             android:drawableEnd="@drawable/ic_coin_grey"/>
-
-        <EditText
-            android:id="@+id/edt_task_due_date"
-            android:layout_width="@dimen/edit_field_width"
-            android:layout_height="wrap_content"
-            android:inputType="date"
-            android:drawableEnd="@drawable/ic_calendar_grey"
-            android:imeOptions="actionDone"
-            android:hint="@string/hint_due_date"/>
-
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btn_add_task"
