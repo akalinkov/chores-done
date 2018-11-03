@@ -24,7 +24,8 @@
         <activity
             android:name=".activities.TasksActivity"
             android:label="@string/title_activity_daily_chores" />
-        <activity android:name=".activities.NewTaskActivity"></activity>
+        <activity android:name=".activities.NewTaskActivity" />
+        <activity android:name=".activities.RewardsActivity"></activity>
     </application>
 
 </manifest>
