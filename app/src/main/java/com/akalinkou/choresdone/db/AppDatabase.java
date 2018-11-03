@@ -5,12 +5,16 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
+import com.akalinkou.choresdone.db.dao.RewardDao;
 import com.akalinkou.choresdone.db.dao.TaskDao;
 import com.akalinkou.choresdone.db.dao.UserDao;
+import com.akalinkou.choresdone.models.Reward;
 import com.akalinkou.choresdone.models.Task;
 import com.akalinkou.choresdone.models.User;
 
-@Database(entities = {User.class, Task.class}, version = 1, exportSchema = false)
+@Database(entities = {User.class, Task.class, Reward.class},
+        version = 1,
+        exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static final String DATABASE_NAME = "chores_database";
@@ -18,6 +22,8 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract UserDao userDao();
 
     public abstract TaskDao taskDao();
+
+    public abstract RewardDao rewardDao();
 
     private static volatile AppDatabase INSTANCE;
 

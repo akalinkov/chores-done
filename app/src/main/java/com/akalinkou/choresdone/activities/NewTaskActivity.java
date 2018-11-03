@@ -48,7 +48,7 @@ public class NewTaskActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putParcelable(TasksActivity.USER_EXTRA_KEY, user);
+        outState.putParcelable(User.EXTRAS_KEY, user);
         super.onSaveInstanceState(outState);
     }
 
@@ -57,16 +57,16 @@ public class NewTaskActivity extends AppCompatActivity {
         if (extras == null) {
             return;
         }
-        user = extras.getParcelable(TasksActivity.USER_EXTRA_KEY);
+        user = extras.getParcelable(User.EXTRAS_KEY);
     }
 
     private void restoreInstanceState(Bundle inState) {
-        user = inState.getParcelable(TasksActivity.USER_EXTRA_KEY);
+        user = inState.getParcelable(User.EXTRAS_KEY);
     }
 
     public static void start(Context context, User user) {
         Intent newTaskActivity = new Intent(context, NewTaskActivity.class);
-        newTaskActivity.putExtra(TasksActivity.USER_EXTRA_KEY, user);
+        newTaskActivity.putExtra(User.EXTRAS_KEY, user);
         context.startActivity(newTaskActivity);
     }
 

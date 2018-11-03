@@ -38,17 +38,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:textSize="16sp"
-                android:text="@string/label_balance"/>
+                android:text="@string/label_balance"
+                android:textSize="16sp" />
 
             <TextView
-                android:layout_marginStart="8dp"
                 android:id="@+id/txt_user_balance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
+                android:layout_marginStart="8dp"
                 android:drawableStart="@drawable/ic_coin"
                 android:drawablePadding="8dp"
+                android:gravity="center_vertical"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 tools:text="299" />

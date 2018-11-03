@@ -12,6 +12,8 @@ import android.support.annotation.NonNull;
 @Entity(tableName = "users")
 public class User implements Parcelable {
 
+    public static final String EXTRAS_KEY = "user_extra_key";
+
     @PrimaryKey(autoGenerate = true)
     private int id;
 

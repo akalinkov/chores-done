@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/reward_item_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:baselineAligned="false"
+    android:orientation="horizontal"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/reward_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_weight="1"
+        android:textSize="20sp"
+        tools:text="Play piano and also a lot of other things to do" />
+
+    <TextView
+        android:id="@+id/reward_cost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="0"
+        android:drawableEnd="@drawable/ic_coin"
+        android:drawablePadding="8dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        tools:text="20" />
+
+</LinearLayout>

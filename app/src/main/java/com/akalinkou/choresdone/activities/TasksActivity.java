@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -32,7 +31,6 @@ public class TasksActivity extends AppCompatActivity
         implements TasksAdapter.TaskActionListener {
 
     private static final String TAG = TasksActivity.class.getSimpleName();
-    public static final String USER_EXTRA_KEY = "user_extra_key";
 
     private TasksAdapter tasksAdapter;
 
@@ -68,12 +66,12 @@ public class TasksActivity extends AppCompatActivity
     }
 
     private void restoreInstanceState(Bundle inState) {
-        user = inState.getParcelable(USER_EXTRA_KEY);
+        user = inState.getParcelable(User.EXTRAS_KEY);
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putParcelable(USER_EXTRA_KEY, user);
+        outState.putParcelable(User.EXTRAS_KEY, user);
         super.onSaveInstanceState(outState);
     }
 
@@ -82,7 +80,7 @@ public class TasksActivity extends AppCompatActivity
         if (extras == null) {
             return;
         }
-        user = extras.getParcelable(USER_EXTRA_KEY);
+        user = extras.getParcelable(User.EXTRAS_KEY);
     }
 
     private void setupTasksList() {
@@ -125,7 +123,7 @@ public class TasksActivity extends AppCompatActivity
     public static void start(Context context, User user) {
         Log.d(TAG, "start: start TasksActivity intent");
         Intent tasksActivity = new Intent(context, TasksActivity.class);
-        tasksActivity.putExtra(USER_EXTRA_KEY, user);
+        tasksActivity.putExtra(User.EXTRAS_KEY, user);
         context.startActivity(tasksActivity);
     }
 
