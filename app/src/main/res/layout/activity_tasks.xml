@@ -77,7 +77,7 @@
         android:layout_gravity="bottom"
         android:background="@android:color/background_light"
         android:elevation="4dp"
-        android:text="@string/title_rewards" />
+        android:text="@string/title_rewards_btn" />
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"

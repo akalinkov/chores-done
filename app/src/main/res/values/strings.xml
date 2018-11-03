@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Chores Done</string>
     <string name="title_activity_daily_chores">Daily Chores</string>
-    <string name="title_rewards">Rewards</string>
+    <string name="title_rewards_btn">Rewards</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="label_no_tasks">Add your first task</string>
@@ -15,4 +15,5 @@
     <string name="menu_item_delete">Delete</string>
     <string name="screen_title_rewards">Rewards</string>
     <string name="label_balance">Balance</string>
+    <string name="title_tasks_btn">Tasks</string>
 </resources>

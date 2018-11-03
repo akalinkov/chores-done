@@ -132,9 +132,7 @@ public class TasksActivity extends AppCompatActivity
     @OnClick(R.id.btn_rewards)
     public void navigateToRewardsBtnClicked() {
         Log.d(TAG, "navigateToRewardsBtnClicked: 'Rewards' button clicked");
-        Snackbar.make(findViewById(R.id.all_tasks_layout),
-                "Rewards button clicked",
-                Snackbar.LENGTH_LONG).show();
+        RewardsActivity.start(this, user);
     }
 
     @OnClick(R.id.btn_add_task)

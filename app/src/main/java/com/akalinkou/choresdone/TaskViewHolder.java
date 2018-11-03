@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.ContextMenu;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -18,7 +17,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class TaskViewHolder extends RecyclerView.ViewHolder
-implements View.OnCreateContextMenuListener, PopupMenu.OnMenuItemClickListener {
+        implements View.OnCreateContextMenuListener, PopupMenu.OnMenuItemClickListener {
 
     @BindView(R.id.task_title)
     TextView title;
@@ -77,6 +76,7 @@ implements View.OnCreateContextMenuListener, PopupMenu.OnMenuItemClickListener {
 
     interface TaskClickListener {
         void onTaskDelete(int position);
+
         void onTaskClick(int position);
     }
 }

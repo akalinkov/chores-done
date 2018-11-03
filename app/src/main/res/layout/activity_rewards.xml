@@ -82,13 +82,13 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btn_rewards"
+        android:id="@+id/btn_tasks"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="bottom"
         android:background="@android:color/background_light"
         android:elevation="4dp"
-        android:text="@string/title_rewards" />
+        android:text="@string/title_tasks_btn" />
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
