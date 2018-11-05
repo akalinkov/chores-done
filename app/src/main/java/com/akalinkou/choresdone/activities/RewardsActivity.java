@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -32,7 +33,6 @@ public class RewardsActivity extends AppCompatActivity {
 
     private static final String TAG = RewardsActivity.class.getSimpleName();
     private User user;
-    private List<Reward> rewards;
 
     @BindView(R.id.btn_add_reward)
     ImageButton addRewardButton;
@@ -46,6 +46,10 @@ public class RewardsActivity extends AppCompatActivity {
     @BindView(R.id.txt_user_balance)
     TextView balance;
 
+    @BindView(R.id.label_no_rewards)
+    TextView noRewardsLabel;
+
+    private RewardsAdapter rewardsAdapter;
     private UserViewModel userViewModel;
     private RewardViewModel rewardViewModel;
 
@@ -70,7 +74,8 @@ public class RewardsActivity extends AppCompatActivity {
 
     private void setupRewardsList() {
         rewardsView.setLayoutManager(new LinearLayoutManager(this));
-        rewardsView.setAdapter(new RewardsAdapter(new ArrayList<Reward>()));
+        rewardsAdapter = new RewardsAdapter(new ArrayList<Reward>());
+        rewardsView.setAdapter(rewardsAdapter);
     }
 
     private void registerUserObserver() {
@@ -93,7 +98,15 @@ public class RewardsActivity extends AppCompatActivity {
         rewardViewModel.getRewards().observe(this, new Observer<List<Reward>>() {
             @Override
             public void onChanged(@Nullable List<Reward> rewards) {
-                RewardsActivity.this.rewards = rewards;
+                boolean isEmptyRewardsList = rewards == null || rewards.size() == 0;
+                if (isEmptyRewardsList) {
+                    setViewVisibility(noRewardsLabel, true);
+                    setViewVisibility(rewardsView, false);
+                } else {
+                    rewardsAdapter.setData(rewards);
+                    setViewVisibility(noRewardsLabel, false);
+                    setViewVisibility(rewardsView, true);
+                }
             }
         });
     }
@@ -121,6 +134,20 @@ public class RewardsActivity extends AppCompatActivity {
     public void onTasksBtnClick() {
         Log.d(TAG, "onTasksBtnClick: start TasksActivity");
         TasksActivity.start(this, user);
+    }
+
+    @OnClick(R.id.btn_add_reward)
+    public void onRewardBtnClick() {
+        Log.d(TAG, "onRewardBtnClick: start NewRewardActivity");
+        NewRewardActivity.start(this, user);
+    }
+
+    private void setViewVisibility(View view, boolean isVisible) {
+        int visibility = View.GONE;
+        if (isVisible) {
+            visibility = View.VISIBLE;
+        }
+        view.setVisibility(visibility);
     }
 
 }

@@ -22,4 +22,8 @@ public class RewardViewModel extends AndroidViewModel {
     public LiveData<List<Reward>> getRewards() {
         return repo.getRewards();
     }
+
+    public void addReward(Reward reward) {
+        repo.addReward(reward);
+    }
 }

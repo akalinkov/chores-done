@@ -9,7 +9,7 @@ import android.support.annotation.NonNull;
 @Entity(tableName = "rewards")
 public class Reward {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     private int id;
 

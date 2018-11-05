@@ -1,19 +1,27 @@
 <resources>
     <string name="app_name">Chores Done</string>
-    <string name="title_activity_daily_chores">Daily Chores</string>
-    <string name="title_rewards_btn">Rewards</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+
+    <!--Labels-->
     <string name="label_no_tasks">Add your first task</string>
     <string name="label_no_rewards">Add your first reward</string>
-    <string name="screen_title_daily_chores">Daily Chores</string>
-    <string name="hint_kids_name">Kid\'s name</string>
-    <string name="hint_task_name">Task name</string>
-    <string name="hint_task_value">Value</string>
-    <string name="btn_create">Create</string>
-    <string name="hint_task_description">Description (optional)</string>
-    <string name="menu_item_delete">Delete</string>
-    <string name="screen_title_rewards">Rewards</string>
     <string name="label_balance">Balance</string>
-    <string name="title_tasks_btn">Tasks</string>
+
+    <!--Fields hints-->
+    <string name="hint_user_name">Name</string>
+    <string name="hint_task_name">Title</string>
+    <string name="hint_task_value">Value</string>
+    <string name="hint_reward_name">Title</string>
+
+    <!--Buttons-->
+    <string name="btn_delete">Delete</string>
+    <string name="btn_create">Create</string>
+    <string name="btn_tasks">Tasks</string>
+    <string name="btn_rewards">Rewards</string>
+
+    <!--Screen titles-->
+    <string name="screen_title_rewards">Rewards</string>
+    <string name="screen_title_tasks">Tasks</string>
+    <string name="screen_title_new_reward">New Reward</string>
+    <string name="screen_title_new_task">New Task</string>
+
 </resources>

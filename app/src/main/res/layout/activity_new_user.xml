@@ -37,7 +37,7 @@
             android:layout_width="@dimen/edit_field_width"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:hint="@string/hint_kids_name"
+            android:hint="@string/hint_user_name"
             android:imeOptions="actionNext"/>
 
         <android.support.v7.widget.AppCompatButton

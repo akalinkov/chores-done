@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/new_reward_layout"
+    android:id="@+id/new_task_layout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.NewRewardActivity">
+    tools:context=".activities.NewTaskActivity">
 
     <LinearLayout
-        android:id="@+id/reward_container"
+        android:id="@+id/task_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -18,23 +18,23 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/txt_tasks_screen_title"
+            android:id="@+id/txt_new_reward_screen_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/screen_title_new_task"
+            android:text="@string/screen_title_new_reward"
             android:textSize="28sp" />
 
         <EditText
-            android:id="@+id/edt_task_name"
+            android:id="@+id/edt_reward_title"
             android:layout_width="@dimen/edit_field_width"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_task_name"
+            android:hint="@string/hint_reward_name"
             android:imeOptions="actionNext"
             android:inputType="textAutoComplete|textAutoCorrect" />
 
         <EditText
-            android:id="@+id/edt_task_value"
+            android:id="@+id/edt_reward_cost"
             android:layout_width="@dimen/edit_field_width"
             android:layout_height="wrap_content"
             android:hint="@string/hint_task_value"
@@ -44,7 +44,7 @@
             android:drawableEnd="@drawable/ic_coin_grey"/>
 
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_save_task"
+            android:id="@+id/btn_save_reward"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"

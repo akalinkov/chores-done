@@ -94,13 +94,14 @@ public class TasksActivity extends AppCompatActivity
         taskViewModel.getTasks(user.getId()).observe(this, new Observer<List<Task>>() {
             @Override
             public void onChanged(@Nullable List<Task> tasks) {
-                if (tasks == null || tasks.size() == 0) {
+                boolean isEmptyTasksList = tasks == null || tasks.size() == 0;
+                if (isEmptyTasksList) {
                     setViewVisibility(noTasksLabel, true);
                     setViewVisibility(tasksRecyclerView, false);
                 } else {
                     tasksAdapter.setTasks(tasks);
-                    setViewVisibility(tasksRecyclerView, true);
                     setViewVisibility(noTasksLabel, false);
+                    setViewVisibility(tasksRecyclerView, true);
                 }
             }
         });

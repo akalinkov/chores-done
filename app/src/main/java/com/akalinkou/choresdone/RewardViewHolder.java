@@ -25,6 +25,6 @@ class RewardViewHolder extends RecyclerView.ViewHolder {
 
     public void bind(Reward reward) {
         title.setText(reward.getTitle());
-        cost.setText(reward.getCost());
+        cost.setText(String.valueOf(reward.getCost()));
     }
 }

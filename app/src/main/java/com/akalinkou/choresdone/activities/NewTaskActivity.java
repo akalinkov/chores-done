@@ -70,13 +70,13 @@ public class NewTaskActivity extends AppCompatActivity {
         context.startActivity(newTaskActivity);
     }
 
-    @OnClick(R.id.btn_add_task)
-    public void onAddTaskBtnClicked() {
+    @OnClick(R.id.btn_save_task)
+    public void onSaveTaskBtnClicked() {
         String name = taskName.getText().toString();
-        Log.d(TAG, "onAddTaskBtnClicked: taskName=" + name);
+        Log.d(TAG, "onSaveTaskBtnClicked: taskName=" + name);
         String valueString = taskValue.getText().toString();
         int value = (valueString.isEmpty()) ? 0 : Integer.parseInt(valueString);
-        Log.d(TAG, "onAddTaskBtnClicked: taskValue=" + value);
+        Log.d(TAG, "onSaveTaskBtnClicked: taskValue=" + value);
         Task task = new Task(name, value, user.getId(), false);
         taskViewModel.addTask(task);
         TasksActivity.start(this, user);

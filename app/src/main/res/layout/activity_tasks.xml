@@ -93,7 +93,7 @@
         android:layout_gravity="bottom"
         android:background="@android:color/background_light"
         android:elevation="4dp"
-        android:text="@string/title_rewards_btn" />
+        android:text="@string/btn_rewards" />
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
@@ -103,7 +103,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/screen_title_daily_chores"
+            android:text="@string/screen_title_tasks"
             android:textSize="30sp"
             android:textStyle="bold" />
 

@@ -39,9 +39,16 @@ public class RewardsAdapter extends RecyclerView.Adapter<RewardViewHolder> {
 
     @Override
     public int getItemCount() {
+        Log.d(TAG, "getItemCount: ");
         if (rewards == null) {
             return 0;
         }
         return rewards.size();
+    }
+
+    public void setData(@NonNull List<Reward> rewards) {
+        Log.d(TAG, "setData: update list of rewards in the view. #=" + rewards.size());
+        this.rewards = rewards;
+        notifyDataSetChanged();
     }
 }

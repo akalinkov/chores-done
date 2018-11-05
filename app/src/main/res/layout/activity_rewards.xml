@@ -88,7 +88,7 @@
         android:layout_gravity="bottom"
         android:background="@android:color/background_light"
         android:elevation="4dp"
-        android:text="@string/title_tasks_btn" />
+        android:text="@string/btn_tasks" />
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
