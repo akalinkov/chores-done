@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.akalinkou.choresdone.R;
 import com.akalinkou.choresdone.db.viewmodels.UserViewModel;
 import com.akalinkou.choresdone.models.User;
-import com.akalinkou.choresdone.UserButtonAdapter;
+import com.akalinkou.choresdone.adapters.UserButtonAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

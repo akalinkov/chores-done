@@ -1,16 +1,17 @@
-package com.akalinkou.choresdone;
+package com.akalinkou.choresdone.view_holders;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.akalinkou.choresdone.R;
 import com.akalinkou.choresdone.models.Reward;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-class RewardViewHolder extends RecyclerView.ViewHolder {
+public class RewardViewHolder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.reward_title)
     TextView title;

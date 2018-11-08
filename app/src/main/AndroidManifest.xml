@@ -21,12 +21,22 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.SelectUserActivity" />
         </activity>
-        <activity
-            android:name=".activities.TasksActivity"
-            android:label="@string/screen_title_tasks" />
-        <activity android:name=".activities.NewTaskActivity" />
+        <activity android:name=".activities.TasksActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.SelectUserActivity" />
+        </activity>
+        <activity android:name=".activities.NewTaskActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.TasksActivity" />
+        </activity>
         <activity android:name=".activities.RewardsActivity" />
-        <activity android:name=".activities.NewRewardActivity"></activity>
+        <activity android:name=".activities.NewRewardActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.RewardsActivity" />
+        </activity>
     </application>
 
 </manifest>

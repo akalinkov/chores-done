@@ -1,4 +1,4 @@
-package com.akalinkou.choresdone;
+package com.akalinkou.choresdone.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -8,6 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.akalinkou.choresdone.R;
+import com.akalinkou.choresdone.helpers.SharedPrefs;
+import com.akalinkou.choresdone.view_holders.UserViewHolder;
 import com.akalinkou.choresdone.activities.TasksActivity;
 import com.akalinkou.choresdone.activities.NewUserActivity;
 import com.akalinkou.choresdone.models.User;
@@ -70,7 +73,9 @@ implements UserViewHolder.ProfileClickListener {
         if (buttons.get(position).isDefaultButton()) {
             NewUserActivity.startIntent(context);
         } else {
-            TasksActivity.start(context, userAtPosition(position));
+            User user = userAtPosition(position);
+            SharedPrefs.setUserId(context, user.getId());
+            TasksActivity.start(context, user);
         }
     }
 

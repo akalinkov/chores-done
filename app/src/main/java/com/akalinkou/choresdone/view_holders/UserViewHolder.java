@@ -1,4 +1,4 @@
-package com.akalinkou.choresdone;
+package com.akalinkou.choresdone.view_holders;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.akalinkou.choresdone.R;
 import com.akalinkou.choresdone.models.UserButton;
 
 import butterknife.BindView;
@@ -13,7 +14,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-class UserViewHolder extends RecyclerView.ViewHolder {
+public class UserViewHolder extends RecyclerView.ViewHolder {
 
     private static final String TAG = UserViewHolder.class.getSimpleName();
 
@@ -22,14 +23,14 @@ class UserViewHolder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.profile_image) CircleImageView profileImage;
 
-    UserViewHolder(@NonNull View itemView, ProfileClickListener clickListener) {
+    public UserViewHolder(@NonNull View itemView, ProfileClickListener clickListener) {
         super(itemView);
         Log.d(TAG, "UserViewHolder: new ViewHolder");
         this.clickListener = clickListener;
         ButterKnife.bind(this, itemView);
     }
 
-    void bind(@NonNull UserButton button) {
+    public void bind(@NonNull UserButton button) {
         Log.d(TAG, "bind: " + button.getUserName());
         userName.setText(button.getUserName());
         // TODO: Change to set image for profile. Should use helper class providing Bitmap or default image based on the url
@@ -38,11 +39,11 @@ class UserViewHolder extends RecyclerView.ViewHolder {
 
 
     @OnClick
-    void onClick(View view) {
+    public void onClick(View view) {
         clickListener.onProfileClick(getAdapterPosition());
     }
 
-    interface ProfileClickListener {
+    public interface ProfileClickListener {
         void onProfileClick(int position);
     }
 }

@@ -1,4 +1,4 @@
-package com.akalinkou.choresdone;
+package com.akalinkou.choresdone.view_holders;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.akalinkou.choresdone.R;
 import com.akalinkou.choresdone.models.Task;
 
 import butterknife.BindView;
@@ -74,7 +75,7 @@ public class TaskViewHolder extends RecyclerView.ViewHolder
         return false;
     }
 
-    interface TaskClickListener {
+    public interface TaskClickListener {
         void onTaskDelete(int position);
 
         void onTaskClick(int position);

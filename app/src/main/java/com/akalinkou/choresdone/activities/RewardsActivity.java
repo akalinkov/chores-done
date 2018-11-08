@@ -16,9 +16,10 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.akalinkou.choresdone.R;
-import com.akalinkou.choresdone.RewardsAdapter;
+import com.akalinkou.choresdone.adapters.RewardsAdapter;
 import com.akalinkou.choresdone.db.viewmodels.RewardViewModel;
 import com.akalinkou.choresdone.db.viewmodels.UserViewModel;
+import com.akalinkou.choresdone.helpers.SharedPrefs;
 import com.akalinkou.choresdone.models.Reward;
 import com.akalinkou.choresdone.models.User;
 
@@ -33,6 +34,7 @@ public class RewardsActivity extends AppCompatActivity {
 
     private static final String TAG = RewardsActivity.class.getSimpleName();
     private User user;
+    private int userId;
 
     @BindView(R.id.btn_add_reward)
     ImageButton addRewardButton;
@@ -50,8 +52,6 @@ public class RewardsActivity extends AppCompatActivity {
     TextView noRewardsLabel;
 
     private RewardsAdapter rewardsAdapter;
-    private UserViewModel userViewModel;
-    private RewardViewModel rewardViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,20 +67,30 @@ public class RewardsActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
+        userId = SharedPrefs.getUserId(this);
         setupRewardsList();
         registerUserObserver();
         registerRewardsObserver();
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.d(TAG, "onSaveInstanceState: ");
+        outState.putParcelable(User.EXTRAS_KEY, user);
+    }
+
     private void setupRewardsList() {
+        Log.d(TAG, "setupRewardsList: ");
         rewardsView.setLayoutManager(new LinearLayoutManager(this));
         rewardsAdapter = new RewardsAdapter(new ArrayList<Reward>());
         rewardsView.setAdapter(rewardsAdapter);
     }
 
     private void registerUserObserver() {
-        userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
-        userViewModel.getUser(user.getId()).observe(this, new Observer<User>() {
+        Log.d(TAG, "registerUserObserver: ");
+        UserViewModel userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
+        userViewModel.getUser(userId).observe(this, new Observer<User>() {
             @Override
             public void onChanged(@Nullable User user) {
                 if (user == null) {
@@ -94,7 +104,8 @@ public class RewardsActivity extends AppCompatActivity {
     }
 
     private void registerRewardsObserver() {
-        rewardViewModel = ViewModelProviders.of(this).get(RewardViewModel.class);
+        Log.d(TAG, "registerRewardsObserver: ");
+        RewardViewModel rewardViewModel = ViewModelProviders.of(this).get(RewardViewModel.class);
         rewardViewModel.getRewards().observe(this, new Observer<List<Reward>>() {
             @Override
             public void onChanged(@Nullable List<Reward> rewards) {
@@ -112,15 +123,21 @@ public class RewardsActivity extends AppCompatActivity {
     }
 
     private void restoreInstanceState(Bundle inState) {
+        Log.d(TAG, "restoreInstanceState: ");
         user = inState.getParcelable(User.EXTRAS_KEY);
     }
 
     private void parseExtras() {
+        Log.d(TAG, "parseExtras: ");
         Bundle extras = getIntent().getExtras();
         if (extras == null) {
             return;
         }
-        user = extras.getParcelable(User.EXTRAS_KEY);
+        User tempUser = extras.getParcelable(User.EXTRAS_KEY);
+        if (tempUser == null) {
+            return;
+        }
+        user = tempUser;
     }
 
     public static void start(Context context, User user) {
@@ -137,17 +154,17 @@ public class RewardsActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.btn_add_reward)
-    public void onRewardBtnClick() {
-        Log.d(TAG, "onRewardBtnClick: start NewRewardActivity");
+    public void onAddRewardBtnClick() {
+        Log.d(TAG, "onAddRewardBtnClick: start NewRewardActivity");
         NewRewardActivity.start(this, user);
     }
 
     private void setViewVisibility(View view, boolean isVisible) {
+        Log.d(TAG, "setViewVisibility: ");
         int visibility = View.GONE;
         if (isVisible) {
             visibility = View.VISIBLE;
         }
         view.setVisibility(visibility);
     }
-
 }

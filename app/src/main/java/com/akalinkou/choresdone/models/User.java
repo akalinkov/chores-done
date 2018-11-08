@@ -13,6 +13,7 @@ import android.support.annotation.NonNull;
 public class User implements Parcelable {
 
     public static final String EXTRAS_KEY = "user_extra_key";
+    public static final String USER_ID_KEY = "user_id_key";
 
     @PrimaryKey(autoGenerate = true)
     private int id;

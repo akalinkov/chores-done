@@ -14,9 +14,10 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.akalinkou.choresdone.R;
-import com.akalinkou.choresdone.TasksAdapter;
+import com.akalinkou.choresdone.adapters.TasksAdapter;
 import com.akalinkou.choresdone.db.viewmodels.TaskViewModel;
 import com.akalinkou.choresdone.db.viewmodels.UserViewModel;
+import com.akalinkou.choresdone.helpers.SharedPrefs;
 import com.akalinkou.choresdone.models.Task;
 import com.akalinkou.choresdone.models.User;
 
@@ -46,6 +47,7 @@ public class TasksActivity extends AppCompatActivity
     private TaskViewModel taskViewModel;
     private UserViewModel userViewModel;
     private User user;
+    private int userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +62,7 @@ public class TasksActivity extends AppCompatActivity
             restoreInstanceState(savedInstanceState);
         }
 
+        userId = SharedPrefs.getUserId(this);
         setupTasksList();
         registerTasksObserver();
         registerUserObserver();
@@ -91,7 +94,7 @@ public class TasksActivity extends AppCompatActivity
 
     private void registerTasksObserver() {
         taskViewModel = ViewModelProviders.of(this).get(TaskViewModel.class);
-        taskViewModel.getTasks(user.getId()).observe(this, new Observer<List<Task>>() {
+        taskViewModel.getTasks(userId).observe(this, new Observer<List<Task>>() {
             @Override
             public void onChanged(@Nullable List<Task> tasks) {
                 boolean isEmptyTasksList = tasks == null || tasks.size() == 0;
@@ -109,7 +112,7 @@ public class TasksActivity extends AppCompatActivity
 
     private void registerUserObserver() {
         userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
-        userViewModel.getUser(user.getId()).observe(this, new Observer<User>() {
+        userViewModel.getUser(userId).observe(this, new Observer<User>() {
             @Override
             public void onChanged(@Nullable User user) {
                 if (user == null) {

@@ -1,4 +1,4 @@
-package com.akalinkou.choresdone;
+package com.akalinkou.choresdone.adapters;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.akalinkou.choresdone.R;
+import com.akalinkou.choresdone.view_holders.TaskViewHolder;
 import com.akalinkou.choresdone.models.Task;
 
 import java.util.List;
