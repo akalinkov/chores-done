@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.akalinkou.choresdone.R;
 import com.akalinkou.choresdone.db.viewmodels.UserViewModel;
@@ -38,10 +39,18 @@ public class NewUserActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_add_user)
     public void onAddUserBtnClicked() {
+        if (isRequiredFieldsEmpty()) {
+            Toast.makeText(this, R.string.required_user_name, Toast.LENGTH_LONG).show();
+            return;
+        }
         String name = userName.getText().toString();
         String path = "";
         User user = new User(name, 0, path);
         userViewModel.addUser(user);
         SelectUserActivity.start(this);
+    }
+
+    private boolean isRequiredFieldsEmpty() {
+        return userName.getText().length() == 0;
     }
 }

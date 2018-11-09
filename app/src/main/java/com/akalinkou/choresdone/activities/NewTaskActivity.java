@@ -10,6 +10,7 @@ import android.support.v7.widget.AppCompatAutoCompleteTextView;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.akalinkou.choresdone.R;
 import com.akalinkou.choresdone.api.TaskNamesApi;
@@ -18,7 +19,6 @@ import com.akalinkou.choresdone.models.Task;
 import com.akalinkou.choresdone.models.TaskNamesPresets;
 import com.akalinkou.choresdone.models.User;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import butterknife.BindView;
@@ -93,6 +93,10 @@ public class NewTaskActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_save_task)
     public void onSaveTaskBtnClicked() {
+        if (isRequiredFieldsEmpty()) {
+            Toast.makeText(this, R.string.required_task_name, Toast.LENGTH_LONG).show();
+            return;
+        }
         String name = taskName.getText().toString();
         Log.d(TAG, "onSaveTaskBtnClicked: taskName=" + name);
         String valueString = taskValue.getText().toString();
@@ -123,5 +127,9 @@ public class NewTaskActivity extends AppCompatActivity {
                     taskNamesPresets.task_names);
             taskName.setAdapter(adapter);
         }
+    }
+
+    private boolean isRequiredFieldsEmpty() {
+        return taskName.getText().length() == 0;
     }
 }

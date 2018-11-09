@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.akalinkou.choresdone.R;
 import com.akalinkou.choresdone.db.viewmodels.RewardViewModel;
@@ -83,6 +84,10 @@ public class NewRewardActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_save_reward)
     public void onSaveRewardBtnClick() {
+        if (isRequiredFieldsEmpty()) {
+            Toast.makeText(this, R.string.required_reward_title, Toast.LENGTH_LONG).show();
+            return;
+        }
         String title = titleView.getText().toString();
         Log.d(TAG, "onSaveRewardBtnClick: title=" + title);
         int cost = Integer.valueOf(costView.getText().toString());
@@ -90,5 +95,9 @@ public class NewRewardActivity extends AppCompatActivity {
         Reward newReward = new Reward(title, cost);
         rewardViewModel.addReward(newReward);
         RewardsActivity.start(this, user);
+    }
+
+    private boolean isRequiredFieldsEmpty() {
+        return titleView.getText().length() == 0;
     }
 }
