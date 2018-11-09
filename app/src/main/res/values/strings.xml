@@ -23,5 +23,6 @@
     <string name="screen_title_tasks">Tasks</string>
     <string name="screen_title_new_reward">New Reward</string>
     <string name="screen_title_new_task">New Task</string>
+    <string name="internet_connection_failed">No internet connection. Try again later</string>
 
 </resources>

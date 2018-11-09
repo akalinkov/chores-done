@@ -24,6 +24,8 @@ dependencies {
     implementation group: 'com.android.support', name: 'recyclerview-v7', version: support_lib_version
     implementation group: 'com.android.support.constraint', name: 'constraint-layout', version: constraint_layout_version
     implementation group: 'de.hdodenhof', name: 'circleimageview', version: circle_image_view_version
+    implementation group: 'com.google.code.gson', name: 'gson', version: gson_version
+
 
     // Testing
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
