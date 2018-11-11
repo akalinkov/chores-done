@@ -9,11 +9,11 @@ public class UserButton {
         this.user = user;
     }
 
-    public String getProfileImagePath() {
+    public int getAvatarResourceId() {
         if (user == null) {
-            return "";
+            return 0;
         }
-        return user.getImagePath();
+        return user.getAvatarResourceId();
     }
 
     public String getUserName() {

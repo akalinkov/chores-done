@@ -19,9 +19,11 @@ public class UserViewHolder extends RecyclerView.ViewHolder {
     private static final String TAG = UserViewHolder.class.getSimpleName();
 
     private ProfileClickListener clickListener;
-    @BindView(R.id.txt_user_name) TextView userName;
+    @BindView(R.id.txt_user_name)
+    TextView userName;
 
-    @BindView(R.id.profile_image) CircleImageView profileImage;
+    @BindView(R.id.profile_image)
+    CircleImageView avatar;
 
     public UserViewHolder(@NonNull View itemView, ProfileClickListener clickListener) {
         super(itemView);
@@ -33,13 +35,17 @@ public class UserViewHolder extends RecyclerView.ViewHolder {
     public void bind(@NonNull UserButton button) {
         Log.d(TAG, "bind: " + button.getUserName());
         userName.setText(button.getUserName());
-        // TODO: Change to set image for profile. Should use helper class providing Bitmap or default image based on the url
-//        profileImage.setImageBitmap(user.getImagePath());
+        int avatarId = button.getAvatarResourceId();
+        if (avatarId == 0) {
+            avatarId = R.drawable.ic_default_user;
+        }
+        avatar.setImageResource(avatarId);
     }
 
 
     @OnClick
     public void onClick(View view) {
+        if (clickListener == null) return;
         clickListener.onProfileClick(getAdapterPosition());
     }
 

@@ -58,12 +58,15 @@ public class TasksAdapter extends RecyclerView.Adapter<TaskViewHolder>
 
     @Override
     public void onTaskDelete(int position) {
+        Log.d(TAG, "onTaskDelete: position#" + position);
+        if (actionListener == null) return;
         actionListener.deleteTask(tasks.get(position));
     }
 
     @Override
     public void onTaskClick(int position) {
         Log.d(TAG, "onTaskClick: task #" + position);
+        if (actionListener == null) return;
         actionListener
                 .toggleTaskStatus(tasks.get(position).getId(),
                         tasks.get(position).isComplete(),
@@ -72,6 +75,7 @@ public class TasksAdapter extends RecyclerView.Adapter<TaskViewHolder>
 
     public interface TaskActionListener {
         void toggleTaskStatus(int taskId, boolean currentCompletionStatus, int value);
+
         void deleteTask(Task task);
     }
 }

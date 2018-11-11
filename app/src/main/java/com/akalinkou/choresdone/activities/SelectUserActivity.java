@@ -27,15 +27,10 @@ public class SelectUserActivity extends AppCompatActivity {
 
     private static final String TAG = SelectUserActivity.class.getSimpleName();
 
-    @BindView(R.id.txt_screen_title)
-    TextView screenTitle;
-
     @BindView(R.id.rv_users_list)
     RecyclerView usersListView;
 
     private UserButtonAdapter userButtonAdapter;
-
-    private UserViewModel userViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +43,7 @@ public class SelectUserActivity extends AppCompatActivity {
         userButtonAdapter = new UserButtonAdapter(this, new ArrayList<User>());
         usersListView.setAdapter(userButtonAdapter);
 
-        userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
+        UserViewModel userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
         userViewModel.getAllUsers().observe(this, new Observer<List<User>>() {
             @Override
             public void onChanged(@Nullable final List<User> users) {

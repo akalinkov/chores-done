@@ -9,6 +9,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
+import com.akalinkou.choresdone.R;
+
 @Entity(tableName = "users")
 public class User implements Parcelable {
 
@@ -22,24 +24,24 @@ public class User implements Parcelable {
     @ColumnInfo(name = "name")
     private String name;
 
-    @ColumnInfo(name = "profile_image_path")
-    private String imagePath;
+    @ColumnInfo(name = "avatar_resource_id")
+    private int avatarResourceId;
 
     @ColumnInfo(name = "balance")
     private int balance;
 
     @Ignore
-    public User(@NonNull String name, int balance, String imagePath) {
+    public User(@NonNull String name, int balance, int avatarResourceId) {
         this.name = name;
-        this.imagePath = imagePath;
+        this.avatarResourceId = avatarResourceId;
         this.balance = balance;
     }
 
-    public User(int id, @NonNull String name, int balance, String imagePath) {
+    public User(int id, @NonNull String name, int balance, int avatarResourceId) {
         this.id = id;
         this.name = name;
         this.balance = balance;
-        this.imagePath = imagePath;
+        this.avatarResourceId = avatarResourceId;
     }
 
     @NonNull
@@ -51,8 +53,11 @@ public class User implements Parcelable {
         return id;
     }
 
-    public String getImagePath() {
-        return imagePath;
+    public int getAvatarResourceId() {
+        if (avatarResourceId == 0) {
+            return R.drawable.ic_default_user;
+        }
+        return avatarResourceId;
     }
 
     public int getBalance() {
@@ -67,7 +72,7 @@ public class User implements Parcelable {
     protected User(Parcel in) {
         id = in.readInt();
         name = in.readString();
-        imagePath = in.readString();
+        avatarResourceId = in.readInt();
         balance = in.readInt();
     }
 
@@ -92,7 +97,7 @@ public class User implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(id);
         dest.writeString(name);
-        dest.writeString(imagePath);
+        dest.writeInt(avatarResourceId);
         dest.writeInt(balance);
     }
 }

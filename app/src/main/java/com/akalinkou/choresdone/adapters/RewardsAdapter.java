@@ -13,14 +13,17 @@ import com.akalinkou.choresdone.models.Reward;
 
 import java.util.List;
 
-public class RewardsAdapter extends RecyclerView.Adapter<RewardViewHolder> {
+public class RewardsAdapter extends RecyclerView.Adapter<RewardViewHolder>
+        implements RewardViewHolder.RewardClickListener {
 
     private static final String TAG = RewardsAdapter.class.getSimpleName();
 
     private List<Reward> rewards;
+    private RewardActionListener listener;
 
-    public RewardsAdapter(List<Reward> rewards) {
+    public RewardsAdapter(List<Reward> rewards, RewardActionListener listener) {
         this.rewards = rewards;
+        this.listener = listener;
     }
 
     @NonNull
@@ -30,7 +33,7 @@ public class RewardsAdapter extends RecyclerView.Adapter<RewardViewHolder> {
         View rewardItemView = LayoutInflater
                 .from(parent.getContext())
                 .inflate(R.layout.item_reward, parent, false);
-        return new RewardViewHolder(rewardItemView);
+        return new RewardViewHolder(rewardItemView, this);
     }
 
     @Override
@@ -52,5 +55,16 @@ public class RewardsAdapter extends RecyclerView.Adapter<RewardViewHolder> {
         Log.d(TAG, "setData: update list of rewards in the view. #=" + rewards.size());
         this.rewards = rewards;
         notifyDataSetChanged();
+    }
+
+    @Override
+    public void onRewardClick(int position) {
+        Log.d(TAG, "claimReward: position #" + position);
+        if (listener == null) return;
+        listener.claimReward(rewards.get(position).getCost());
+    }
+
+    public interface RewardActionListener {
+        void claimReward(int cost);
     }
 }

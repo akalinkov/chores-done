@@ -86,6 +86,7 @@ class GridRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
         String balance = String.valueOf(user.getBalance());
         views.setTextViewText(R.id.widget_balance, balance);
         views.setTextViewText(R.id.widget_user_name, user.getName());
+        views.setImageViewResource(R.id.widget_title, user.getAvatarResourceId());
     }
 
     @Override
@@ -108,5 +109,3 @@ class GridRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
         return false;
     }
 }
-
-

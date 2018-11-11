@@ -25,28 +25,29 @@
             android:textSize="28sp" />
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civ_avatar"
             android:layout_width="@dimen/circle_image_size"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:src="@drawable/ic_add_new_user"
-            app:civ_border_width="2dp"
             app:civ_border_color="@android:color/darker_gray"
-            android:layout_gravity="center"/>
+            app:civ_border_width="2dp"
+            android:contentDescription="@string/cd_user_avatar"/>
 
         <EditText
             android:id="@+id/edt_user_name"
             android:layout_width="@dimen/edit_field_width"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
             android:hint="@string/hint_user_name"
-            android:imeOptions="actionNext"/>
+            android:imeOptions="actionNext"
+            android:inputType="textPersonName" />
 
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_add_user"
+            android:id="@+id/btn_save_user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:text="Create" />
+            android:text="@string/btn_create" />
     </LinearLayout>
-
 
 </android.support.constraint.ConstraintLayout>

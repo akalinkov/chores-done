@@ -29,8 +29,10 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import de.hdodenhof.circleimageview.CircleImageView;
 
-public class RewardsActivity extends AppCompatActivity {
+public class RewardsActivity extends AppCompatActivity
+implements RewardsAdapter.RewardActionListener {
 
     private static final String TAG = RewardsActivity.class.getSimpleName();
     private User user;
@@ -51,7 +53,11 @@ public class RewardsActivity extends AppCompatActivity {
     @BindView(R.id.label_no_rewards)
     TextView noRewardsLabel;
 
+    @BindView(R.id.profile_image)
+    CircleImageView avatar;
+
     private RewardsAdapter rewardsAdapter;
+    private UserViewModel userViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,13 +89,13 @@ public class RewardsActivity extends AppCompatActivity {
     private void setupRewardsList() {
         Log.d(TAG, "setupRewardsList: ");
         rewardsView.setLayoutManager(new LinearLayoutManager(this));
-        rewardsAdapter = new RewardsAdapter(new ArrayList<Reward>());
+        rewardsAdapter = new RewardsAdapter(new ArrayList<Reward>(), this);
         rewardsView.setAdapter(rewardsAdapter);
     }
 
     private void registerUserObserver() {
         Log.d(TAG, "registerUserObserver: ");
-        UserViewModel userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
+        userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
         userViewModel.getUser(userId).observe(this, new Observer<User>() {
             @Override
             public void onChanged(@Nullable User user) {
@@ -99,6 +105,7 @@ public class RewardsActivity extends AppCompatActivity {
                 }
                 RewardsActivity.this.user = user;
                 balance.setText(String.valueOf(RewardsActivity.this.user.getBalance()));
+                avatar.setImageResource(RewardsActivity.this.user.getAvatarResourceId());
             }
         });
     }
@@ -166,5 +173,16 @@ public class RewardsActivity extends AppCompatActivity {
             visibility = View.VISIBLE;
         }
         view.setVisibility(visibility);
+    }
+
+    @Override
+    public void claimReward(int cost) {
+        Log.d(TAG, "claimReward: cost=" + cost);
+        if (user.getBalance() >= cost) {
+            Log.d(TAG, "claimReward: old balance=" + user.getBalance());
+            user.setBalance(user.getBalance() - cost);
+            Log.d(TAG, "claimReward: new balance=" + user.getBalance());
+            userViewModel.updateBalance(user);
+        }
     }
 }

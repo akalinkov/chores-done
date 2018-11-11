@@ -27,6 +27,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class TasksActivity extends AppCompatActivity
         implements TasksAdapter.TaskActionListener {
@@ -43,6 +44,9 @@ public class TasksActivity extends AppCompatActivity
 
     @BindView(R.id.txt_user_balance)
     TextView balance;
+
+    @BindView(R.id.profile_image)
+    CircleImageView avatar;
 
     private TaskViewModel taskViewModel;
     private UserViewModel userViewModel;
@@ -120,6 +124,7 @@ public class TasksActivity extends AppCompatActivity
                 }
                 TasksActivity.this.user = user;
                 balance.setText(String.valueOf(TasksActivity.this.user.getBalance()));
+                avatar.setImageResource(TasksActivity.this.user.getAvatarResourceId());
             }
         });
     }
@@ -144,13 +149,14 @@ public class TasksActivity extends AppCompatActivity
     }
 
     @Override
-    public void toggleTaskStatus(int id, boolean currentCompletionStatus, int value) {
+    public void toggleTaskStatus(int taskId, boolean currentCompletionStatus, int value) {
+        boolean success = true;
         if (currentCompletionStatus) {
-            withdrawAmount(value);
+            success = withdrawAmount(value);
         } else {
             depositToAccount(value);
         }
-        taskViewModel.toggleTaskStatus(id, currentCompletionStatus);
+        if (success) taskViewModel.toggleTaskStatus(taskId, currentCompletionStatus);
     }
 
     @Override
@@ -171,8 +177,10 @@ public class TasksActivity extends AppCompatActivity
         userViewModel.updateBalance(user);
     }
 
-    private void withdrawAmount(int value) {
+    private boolean withdrawAmount(int value) {
+        if (user.getBalance() < value) return false;
         user.setBalance(user.getBalance() - value);
         userViewModel.updateBalance(user);
+        return true;
     }
 }

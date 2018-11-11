@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +21,8 @@ import butterknife.OnClick;
 public class TaskViewHolder extends RecyclerView.ViewHolder
         implements View.OnCreateContextMenuListener, PopupMenu.OnMenuItemClickListener {
 
+    private static final String TAG = TaskViewHolder.class.getSimpleName();
+
     @BindView(R.id.task_title)
     TextView title;
 
@@ -30,12 +33,14 @@ public class TaskViewHolder extends RecyclerView.ViewHolder
 
     public TaskViewHolder(@NonNull View itemView, TaskClickListener clickListener) {
         super(itemView);
+        Log.d(TAG, "TaskViewHolder: invoked");
         this.clickListener = clickListener;
         ButterKnife.bind(this, itemView);
         itemView.setOnCreateContextMenuListener(this);
     }
 
     public void bind(Context context, Task task) {
+        Log.d(TAG, "bind: invoked");
         title.setText(task.getTitle());
         value.setText(String.valueOf(task.getValue()));
         Drawable checkmark = getCheckMarkDrawable(context, task.isComplete());
@@ -43,6 +48,7 @@ public class TaskViewHolder extends RecyclerView.ViewHolder
     }
 
     private Drawable getCheckMarkDrawable(Context context, boolean isComplete) {
+        Log.d(TAG, "getCheckMarkDrawable: taskComplete=" + isComplete);
         int drawable;
         if (isComplete) {
             drawable = R.drawable.ic_checkmark_green;
@@ -54,13 +60,14 @@ public class TaskViewHolder extends RecyclerView.ViewHolder
 
     @OnClick
     public void onTaskClick() {
-        if (clickListener != null) {
-            clickListener.onTaskClick(getAdapterPosition());
-        }
+        Log.d(TAG, "onTaskClick: invoked");
+        if (clickListener == null) return;
+        clickListener.onTaskClick(getAdapterPosition());
     }
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        Log.d(TAG, "onCreateContextMenu: invoked");
         PopupMenu popup = new PopupMenu(v.getContext(), v);
         popup.getMenuInflater().inflate(R.menu.task_menu, popup.getMenu());
         popup.setOnMenuItemClickListener(this);
@@ -69,6 +76,7 @@ public class TaskViewHolder extends RecyclerView.ViewHolder
 
     @Override
     public boolean onMenuItemClick(MenuItem menuItem) {
+        Log.d(TAG, "onMenuItemClick: invoked");
         if (clickListener != null) {
             clickListener.onTaskDelete(getAdapterPosition());
         }

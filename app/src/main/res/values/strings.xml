@@ -14,8 +14,8 @@
 
     <!--Buttons-->
     <string name="btn_delete">Delete</string>
-    <string name="btn_create">Create</string>
     <string name="btn_tasks">Tasks</string>
+    <string name="btn_create">Create</string>
     <string name="btn_rewards">Rewards</string>
 
     <!--Screen titles-->
@@ -31,6 +31,7 @@
     <string name="widget_title">Users</string>
     <string name="title_select_user">Select a user</string>
     <string name="cd_users_avatar">User\'s avatar</string>
+    <string name="cd_user_avatar">User avatar</string>
 
     <!--Widget-->
 
