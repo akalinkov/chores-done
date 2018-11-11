@@ -32,6 +32,9 @@
     <string name="title_select_user">Select a user</string>
     <string name="cd_users_avatar">User\'s avatar</string>
     <string name="cd_user_avatar">User avatar</string>
+    <string name="add_reward_button">Add reward button</string>
+    <string name="label_today">Today</string>
+    <string name="cd_add_task_button">Add task button</string>
 
     <!--Widget-->
 

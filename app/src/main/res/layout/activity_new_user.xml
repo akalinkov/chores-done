@@ -26,13 +26,9 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/civ_avatar"
-            android:layout_width="@dimen/circle_image_size"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_add_new_user"
+            style="@style/Avatar"
             app:civ_border_color="@android:color/darker_gray"
-            app:civ_border_width="2dp"
-            android:contentDescription="@string/cd_user_avatar"/>
+            app:civ_border_width="2dp" />
 
         <EditText
             android:id="@+id/edt_user_name"
