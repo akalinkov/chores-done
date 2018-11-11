@@ -20,6 +20,7 @@ import com.akalinkou.choresdone.db.viewmodels.UserViewModel;
 import com.akalinkou.choresdone.helpers.SharedPrefs;
 import com.akalinkou.choresdone.models.Task;
 import com.akalinkou.choresdone.models.User;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,11 +53,14 @@ public class TasksActivity extends AppCompatActivity
     private UserViewModel userViewModel;
     private User user;
     private int userId;
+    private FirebaseAnalytics analytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tasks);
+        analytics = FirebaseAnalytics.getInstance(this);
+
 
         ButterKnife.bind(this);
 

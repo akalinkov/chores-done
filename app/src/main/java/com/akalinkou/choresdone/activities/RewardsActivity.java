@@ -22,6 +22,7 @@ import com.akalinkou.choresdone.db.viewmodels.UserViewModel;
 import com.akalinkou.choresdone.helpers.SharedPrefs;
 import com.akalinkou.choresdone.models.Reward;
 import com.akalinkou.choresdone.models.User;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,11 +33,12 @@ import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class RewardsActivity extends AppCompatActivity
-implements RewardsAdapter.RewardActionListener {
+        implements RewardsAdapter.RewardActionListener {
 
     private static final String TAG = RewardsActivity.class.getSimpleName();
     private User user;
     private int userId;
+    private FirebaseAnalytics analytics;
 
     @BindView(R.id.btn_add_reward)
     ImageButton addRewardButton;
@@ -64,6 +66,7 @@ implements RewardsAdapter.RewardActionListener {
         Log.d(TAG, "onCreate: setup Rewards view");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rewards);
+        analytics = FirebaseAnalytics.getInstance(this);
 
         if (savedInstanceState == null) {
             parseExtras();

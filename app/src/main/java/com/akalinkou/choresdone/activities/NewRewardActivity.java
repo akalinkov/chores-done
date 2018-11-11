@@ -13,6 +13,7 @@ import com.akalinkou.choresdone.R;
 import com.akalinkou.choresdone.db.viewmodels.RewardViewModel;
 import com.akalinkou.choresdone.models.Reward;
 import com.akalinkou.choresdone.models.User;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,11 +32,13 @@ public class NewRewardActivity extends AppCompatActivity {
     private RewardViewModel rewardViewModel;
 
     private User user;
+    private FirebaseAnalytics analytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_reward);
+        analytics = FirebaseAnalytics.getInstance(this);
 
         ButterKnife.bind(this);
 

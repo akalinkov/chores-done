@@ -16,6 +16,8 @@ import com.akalinkou.choresdone.R;
 import com.akalinkou.choresdone.db.viewmodels.UserViewModel;
 import com.akalinkou.choresdone.models.User;
 import com.akalinkou.choresdone.adapters.UserButtonAdapter;
+import com.crashlytics.android.Crashlytics;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +28,7 @@ import butterknife.ButterKnife;
 public class SelectUserActivity extends AppCompatActivity {
 
     private static final String TAG = SelectUserActivity.class.getSimpleName();
+    private FirebaseAnalytics analytics;
 
     @BindView(R.id.rv_users_list)
     RecyclerView usersListView;
@@ -36,6 +39,7 @@ public class SelectUserActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_user);
+        analytics = FirebaseAnalytics.getInstance(this);
 
         ButterKnife.bind(this);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 2);
@@ -48,6 +52,11 @@ public class SelectUserActivity extends AppCompatActivity {
             @Override
             public void onChanged(@Nullable final List<User> users) {
                 userButtonAdapter.setUsers(users);
+                if (users != null) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("users_number_key", String.valueOf(users.size()));
+                    analytics.logEvent("number_of_users", bundle);
+                }
             }
         });
     }

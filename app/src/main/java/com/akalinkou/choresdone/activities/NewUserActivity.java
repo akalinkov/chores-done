@@ -6,12 +6,12 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.akalinkou.choresdone.R;
 import com.akalinkou.choresdone.db.viewmodels.UserViewModel;
 import com.akalinkou.choresdone.models.User;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,11 +27,13 @@ public class NewUserActivity extends AppCompatActivity {
     CircleImageView avatar;
 
     private UserViewModel userViewModel;
+    private FirebaseAnalytics analytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_user);
+        analytics = FirebaseAnalytics.getInstance(this);
 
         ButterKnife.bind(this);
         userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);

@@ -1,4 +1,7 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'io.fabric'
+
 
 android {
     compileSdkVersion 28
@@ -26,18 +29,17 @@ dependencies {
     implementation group: 'de.hdodenhof', name: 'circleimageview', version: circle_image_view_version
     implementation group: 'com.google.code.gson', name: 'gson', version: gson_version
 
-
     // Testing
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    implementation 'com.android.support:design:28.0.0'
+    implementation group: 'com.android.support.constraint', name: 'constraint-layout', version: constraint_layout_version
+    implementation group: 'com.android.support', name: 'design', version: support_lib_version
     testImplementation group: 'junit', name: 'junit', version: junit_version
     androidTestImplementation group: 'com.android.support.test', name: 'runner', version: test_runner_version
     androidTestImplementation group: 'com.android.support.test.espresso', name: 'espresso-core', version: espresso_version
     androidTestImplementation group: 'android.arch.persistence.room', name: 'testing', version: room_version
 
     // Butterknife
-    implementation 'com.jakewharton:butterknife:8.8.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    implementation group: 'com.jakewharton', name: 'butterknife', version: butterknife_version
+    annotationProcessor group: 'com.jakewharton', name: 'butterknife-compiler', version: butterknife_version
 
     // Room Components
     implementation group: 'android.arch.persistence.room', name: 'runtime', version: room_version
@@ -46,4 +48,8 @@ dependencies {
     //Lifecycle components
     implementation group: 'android.arch.lifecycle', name: 'extensions', version: lifecycle_version
     annotationProcessor group: 'android.arch.lifecycle', name: 'compiler', version: lifecycle_version
+
+    //Firebase
+    implementation group: 'com.google.firebase', name: 'firebase-core', version: firebase_core_version
+    implementation group: 'com.crashlytics.sdk.android', name: 'crashlytics', version: crashlytics_version
 }

@@ -18,6 +18,7 @@ import com.akalinkou.choresdone.db.viewmodels.TaskViewModel;
 import com.akalinkou.choresdone.models.Task;
 import com.akalinkou.choresdone.models.TaskNamesPresets;
 import com.akalinkou.choresdone.models.User;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.Arrays;
 
@@ -38,11 +39,13 @@ public class NewTaskActivity extends AppCompatActivity {
     private TaskViewModel taskViewModel;
 
     private User user;
+    private FirebaseAnalytics analytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_task);
+        analytics = FirebaseAnalytics.getInstance(this);
 
         if (savedInstanceState == null) {
             parseIntentExtras();
