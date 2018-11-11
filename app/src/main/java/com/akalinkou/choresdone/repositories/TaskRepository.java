@@ -3,7 +3,7 @@ package com.akalinkou.choresdone.repositories;
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
 
-import com.akalinkou.choresdone.AppExecutors;
+import com.akalinkou.choresdone.helpers.AppExecutors;
 import com.akalinkou.choresdone.db.AppDatabase;
 import com.akalinkou.choresdone.db.dao.TaskDao;
 import com.akalinkou.choresdone.models.Task;

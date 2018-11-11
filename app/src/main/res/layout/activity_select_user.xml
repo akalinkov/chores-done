@@ -10,30 +10,30 @@
         android:id="@+id/user_buttons_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:orientation="vertical">
+        app:layout_constraintTop_toTopOf="parent">
+
         <TextView
             android:id="@+id/txt_screen_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Select a user"
-            android:textSize="24sp"
             android:layout_gravity="center"
+            android:text="@string/title_select_user"
+            android:textSize="24sp"
             tools:text="@tools:sample/lorem" />
-
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_users_list"
-            android:layout_marginTop="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/txt_screen_title"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_screen_title" />
 
     </LinearLayout>
 

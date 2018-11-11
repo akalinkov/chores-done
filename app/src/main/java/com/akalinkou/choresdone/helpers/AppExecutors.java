@@ -1,4 +1,4 @@
-package com.akalinkou.choresdone;
+package com.akalinkou.choresdone.helpers;
 
 import android.os.Handler;
 import android.os.Looper;

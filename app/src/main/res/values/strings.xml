@@ -27,5 +27,11 @@
     <string name="required_task_name">Add task title.</string>
     <string name="required_user_name">Add user name</string>
     <string name="required_reward_title">Add new reward title.</string>
+    <string name="label_no_users">No users yet.</string>
+    <string name="widget_title">Users</string>
+    <string name="title_select_user">Select a user</string>
+    <string name="cd_users_avatar">User\'s avatar</string>
+
+    <!--Widget-->
 
 </resources>
